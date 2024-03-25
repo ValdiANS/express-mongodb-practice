@@ -1,0 +1,57 @@
+<%- include('../includes/head.ejs') %>
+  <script type="module" src="/scripts/product-detail.js"></script>
+  </head>
+
+  <body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main class="px-4 pb-4">
+      
+      <article class="w-full max-w-lg mx-auto flex flex-col items-center gap-y-4">
+        <form id="changeUserForm" action="/products/<%= product._id %>" method="get" class="mt-2 self-start">
+          <div class="flex flex-row items-center gap-x-2">
+            <label for="userId">Login as: </label>
+  
+            <select name="userId" id="userId" class="border px-2 py-1 border-solid border-black">
+              <% for (const user of users) { %>
+                <% if (selectedUserId === user._id.toString()) { %>
+                <option value="<%= user._id %>" selected><%= user.username %></option>
+                <% } else { %>
+                <option value="<%= user._id %>"><%= user.username %></option>
+                <% } %>              
+              <% } %>
+            </select>
+          </div>
+        </form>
+
+        <h1 class="text-4xl font-bold text-center"><%= product.title %></h1>
+
+        <hr class="w-full">
+
+        <figure class="w-full max-w-[300px] h-fit overflow-hidden">
+          <img
+            src="<%= product.imageUrl %>"
+            alt="<%= product.title %>"
+            class="w-full h-full object-center object-cover "
+          />
+        </figure>
+
+        <h2 class="text-xl font-semibold">$<%= product.price %></h2>
+
+        <form action="/cart" method="post" class="flex flex-row gap-x-2">
+          <input type="hidden" name="productId" value="<%= product._id %>">
+          <input type="hidden" name="userId" value="<%= selectedUserId %>">
+          <input type="hidden" name="userName" value="<%= selectedUserName %>">
+          <input type="hidden" name="userEmail" value="<%= selectedUserEmail %>">
+          
+          <button
+            class="h-fit py-1 px-2 text-[#0E79B2] border border-solid border-[#0E79B2] rounded-sm transition duration-100 ease-in-out hover:text-white hover:bg-[#0E79B2] active:scale-90"
+          >
+            Add to Cart
+          </button>
+        </form>
+
+        <p class="whitespace-pre-line"><%= product.description %></p>        
+      </article>
+    </main>
+<%- include('../includes/end.ejs') %>

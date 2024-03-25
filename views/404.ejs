@@ -1,0 +1,26 @@
+<%- include('includes/head.ejs') %>
+  </head>
+
+  <body>
+    <%- include('includes/navigation.ejs') %>
+    
+    <main class="p-4">
+      <section>
+        <h1 class="text-4xl font-bold">Page Not Found</h1>
+
+        <div class="relative w-fit">
+          <div
+            aria-hidden="true"
+            class="absolute inset-0 bg-[#B4E0F8] rounded-full"
+          ></div>
+
+          <a
+            href="/"
+            class="block relative mt-4 px-4 py-2 text-white rounded-full bg-[#0E79B2] transition-all ease-[cubic-bezier(0.68,-0.6,0.32,1.6)] duration-300 hover:-translate-y-2 active:translate-y-0"
+          >
+            Back to home
+          </a>
+        </div>
+      </section>
+    </main>
+<%- include('includes/end.ejs') %>
